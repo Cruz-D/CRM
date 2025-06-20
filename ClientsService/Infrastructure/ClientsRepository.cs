@@ -62,11 +62,6 @@ namespace ClientsService.Infrastructure
                 if (!string.IsNullOrEmpty(cached))
                 {
                     var clientsList = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Client>>(cached);
-
-                    //mostrar datos en consola
-                    Console.WriteLine("Datos obtenidos de la caché Redis: " + cached);
-
-
                     if (clientsList != null)
                         return clientsList;
 

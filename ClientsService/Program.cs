@@ -28,12 +28,10 @@ namespace ClientsService
             });
 
 
-            // Redis: obtiene la cadena de conexión desde User Secrets, variables de entorno, etc.
+            // Configura Redis
             builder.Services.AddSingleton<IConnectionMultiplexer>(sp =>
             {
-                var configuration = builder.Configuration["Redis:ConnectionString"];
-                if (string.IsNullOrWhiteSpace(configuration))
-                    throw new InvalidOperationException("Redis connection string is not configured.");
+                var configuration = builder.Configuration.GetSection("Redis")["ConnectionString"];
                 return ConnectionMultiplexer.Connect(configuration);
             });
 
